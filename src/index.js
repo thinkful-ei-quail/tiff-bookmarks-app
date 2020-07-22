@@ -1,10 +1,20 @@
 import $ from 'jquery';
 
-function main() {
-  console.log('DOM is loaded');
+import './style.css';
 
-  const startMsg = $('<p>Webpack is working!</p>');
-  $('#root').append(startMsg);
-}
+import api from './api';
 
-$(main);
+// function main() {
+//   console.log('DOM is loaded');
+
+//   const startMsg = $('<p>Webpack is working!</p>');
+//   $('#root').html(startMsg);
+// }
+
+// function main() {
+//   api.getBookmarks()
+//   .then(res => res.json())
+//   .then((items) 
+//   )}
+
+// main();
