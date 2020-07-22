@@ -11,10 +11,11 @@ import api from './api';
 //   $('#root').html(startMsg);
 // }
 
-// function main() {
-//   api.getBookmarks()
-//   .then(res => res.json())
-//   .then((items) 
-//   )}
+function main() {
+  api.getBookmarks()
+  .then(res => res.json())
+  .then((bookmarks => console.log(bookmarks)) 
+  
+  )}
 
-// main();
+$(main);
