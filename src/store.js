@@ -2,6 +2,7 @@ const bookmarks = []; //bookmarks will load here from API
 let adding = true; //controls views b/n list view and add new view
 let expanded = false;
 let filtered = "";
+let error = null;
 
 const findById = function (id) {
   return this.bookmarks.find(currentItem => currentItem.id === id);
@@ -26,6 +27,7 @@ const filterRating = function (rating) {
 }
 
 export default {
+  error,
   filtered,
   bookmarks,
   adding,

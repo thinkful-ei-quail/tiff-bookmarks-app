@@ -18,10 +18,8 @@ function main() {
 
   }) 
   bookmark.bindEventListeners()
-  // bookmark.displayNavButtons()
   bookmark.render()
 }
 
-  // bookmark.render()
 
 $(main);

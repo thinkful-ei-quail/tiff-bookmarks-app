@@ -12,19 +12,16 @@ const createNewBookmark = function(bookmark) {
           'Content-Type' : 'application/json'
         },
         body: newBookmark
-      });
+      })
+      .then(res => {
+        if (!res.ok) {
+          let error = res.status.error
+          console.log(res)
+          return Promise.reject(error)
+        }
+      })
+      .catch(error => error)
     };
-
-// const updateBookmark = function(id, updateData){
-//     const newData =  JSON.stringify(updateData);
-//     return fetch(`${BASE_URL}/bookmarks/${id}`), {
-//     method: 'PATCH',
-//     headers: {
-//         'Content-Type' : 'application/json'
-//     },
-//     body: newData
-//     });
-// };
 
 const deleteBookmark = function (id) {
     return fetch(BASE_URL + '/bookmarks/' + id, {
@@ -36,6 +33,5 @@ const deleteBookmark = function (id) {
 export default{
     getBookmarks,
     createNewBookmark,
-    // updateBookmark,
     deleteBookmark,
 };

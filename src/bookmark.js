@@ -46,7 +46,6 @@ const generateBookmark = function (bookmark) {
   } else {
     return `
      <form id="bookmark-form">
-      <div class="error-container">Error message will render here</div>
       <label for="bookmark-entry">Create new bookmark</label>
       <input type="url" name="new-bookmark-url" class="new-bookmark-url" placeholder="Google.com"
         required>
@@ -66,6 +65,7 @@ const generateBookmark = function (bookmark) {
           <input id="rating-5" type="radio" name="rating" value="5">
           <label for="rating-5">5</label>
         </div>
+        
       <button type="submit">Submit</button>
       <button class="cancel-button" type="button">Cancel</button>
     </form>`
@@ -111,9 +111,6 @@ const render = function (data = [...store.bookmarks]) {
 
   // Filter item list if store prop is true by item.checked === false
   let bookmarks = data;
-  // if (store.hideCheckedItems) {
-  //   items = items.filter(item => !item.checked);
-  // }
 
   // render the shopping list in the DOM
   const bookmarkString = generateBookmarkString(bookmarks);
@@ -122,34 +119,10 @@ const render = function (data = [...store.bookmarks]) {
   $('.container').html(bookmarkString);
 };
 
-const handleNewItemSubmit = function () {
-  $('#bookmark-form').submit(function (event) {
-    event.preventDefault();
-    const newItemName = $('.bookmark-entry').val();
-    $('.bookmark-entry').val('');
-    api.createItem(newItemName)
-      .then((newItem) => {
-        store.addItem(newItem);
-        render();
-      })
-      .catch((error) => {
-        store.setError(error.message);
-        renderError();
-      });
-  });
-};
-
-const getItemIdFromElement = function (item) {
-  return $(item)
-    .closest('.js-item-element')
-    .data('item-id');
-};
-
-const handleDeleteItemClicked = function () {
-  $('.js-shopping-list').on('click', '.js-item-delete', event => {
-    const id = getItemIdFromElement(event.currentTarget);
-
-    api.deleteItem(id)
+const deleteBookmark = function () {
+  $('.container').on('click', '#delete-button', (e) => {
+    const id = $(e.currentTarget).parent().find('.bookmark-title').attr('id')
+    api.deleteBookmark(id)
       .then(() => {
         store.findAndDelete(id);
         render();
@@ -159,48 +132,6 @@ const handleDeleteItemClicked = function () {
         store.setError(error.message);
         renderError();
       });
-  });
-};
-
-const handleEditShoppingItemSubmit = function () {
-  $('.js-shopping-list').on('submit', '.js-edit-item', event => {
-    event.preventDefault();
-    const id = getItemIdFromElement(event.currentTarget);
-    const itemName = $(event.currentTarget).find('.shopping-item').val();
-
-    api.updateItem(id, { name: itemName })
-      .then(() => {
-        store.findAndUpdate(id, { name: itemName });
-        render();
-      })
-      .catch((error) => {
-        console.log(error);
-        store.setError(error.message);
-        renderError();
-      });
-  });
-};
-
-const handleItemCheckClicked = function () {
-  $('.js-shopping-list').on('click', '.js-item-toggle', event => {
-    const id = getItemIdFromElement(event.currentTarget);
-    const item = store.findById(id);
-    api.updateItem(id, { checked: !item.checked })
-      .then(() => {
-        store.findAndUpdate(id, { checked: !item.checked });
-        render();
-      })
-      .catch((error) => {
-        store.setError(error.message);
-        renderError();
-      });
-  });
-};
-
-const handleToggleFilterClick = function () {
-  $('.js-filter-checked').click(() => {
-    store.toggleCheckedFilter();
-    render();
   });
 };
 
@@ -227,9 +158,10 @@ const submitForm = function () {
     api.createNewBookmark(newBookmark)
       .then((bookmark) => {
         store.addBookmark(bookmark)
-        store.adding = true
-        render()
+        // store.adding = true
+        // render()
       })
+      .catch(error => console.log(error))
   })
 }
 
@@ -260,45 +192,18 @@ const filterBookmarkView = function() {
 }
 
 const bindEventListeners = function () {
+  deleteBookmark();
   newBookmark();
   submitForm();
   filterBookmarkView();
   cancelButton();
   expandedBookmark();
-  handleNewItemSubmit();
-  handleItemCheckClicked();
-  handleDeleteItemClicked();
-  handleEditShoppingItemSubmit();
-  handleToggleFilterClick();
   handleCloseError();
 };
 
 // This object contains the only exposed methods from this module:
 export default {
   render,
-  // displayNavButtons,
   bindEventListeners
 };
 
-// if true render add new bookmark form
-// else if show added bookmarks
-// else show just new button and rating
-
-
-//filterView() use arr.filter
-
-//expandedView() if true render desc, link, and delete
-
-//handleSubmit grab arr.val() and assign variable
-// create new bookmark var w/ ^ variables
-
-//handleDelete
-
-//handleCancel
-
-//server.CreateBookmark(newBookmarks)
-// UI.addBookmark
-// false and add to page
-
-//bindEventListeners
-// calls functions
