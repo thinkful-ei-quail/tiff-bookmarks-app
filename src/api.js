@@ -1,3 +1,5 @@
+import { data } from "jquery";
+
 const BASE_URL = 'https://thinkful-list-api.herokuapp.com/tiff';
 
 const getBookmarks = function () {
@@ -15,12 +17,11 @@ const createNewBookmark = function(bookmark) {
       })
       .then(res => {
         if (!res.ok) {
-          let error = res.status.error
-          console.log(res)
-          return Promise.reject(error)
+          return Promise.reject(res.json().then(error => error))
         }
+        return res.json()
       })
-      .catch(error => error)
+      .then(data => data)
     };
 
 const deleteBookmark = function (id) {

@@ -65,7 +65,7 @@ const generateBookmark = function (bookmark) {
           <input id="rating-5" type="radio" name="rating" value="5">
           <label for="rating-5">5</label>
         </div>
-        
+        <div class='error-container'></div>
       <button type="submit">Submit</button>
       <button class="cancel-button" type="button">Cancel</button>
     </form>`
@@ -84,7 +84,7 @@ const generateBookmarkString = function (bookmarks) {
 const generateError = function (message) {
   return `
       <section class="error-content">
-        <button id="cancel-error">X</button>
+        <button type="button" id="cancel-error">X</button>
         <p>${message}</p>
       </section>
     `;
@@ -100,8 +100,9 @@ const renderError = function () {
 };
 
 const handleCloseError = function () {
-  $('.error-container').on('click', '#cancel-error', () => {
-    store.setError(null);
+  $('.container').on('click', '#cancel-error', () => {
+    console.log("working")
+    store.error = null;
     renderError();
   });
 };
@@ -158,10 +159,16 @@ const submitForm = function () {
     api.createNewBookmark(newBookmark)
       .then((bookmark) => {
         store.addBookmark(bookmark)
-        // store.adding = true
-        // render()
+        store.adding = true
+        render()
       })
-      .catch(error => console.log(error))
+      .catch(error => {
+        error.then(data => {
+          store.error = data.message
+          renderError()
+        })
+      })
+      
   })
 }
 
