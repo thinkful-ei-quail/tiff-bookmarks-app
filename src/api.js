@@ -4,17 +4,16 @@ const getBookmarks = function () {
 return fetch(`${BASE_URL}/bookmarks`);
 };
 
-// const createNewBookmark = function(bookmark) {
-//     const newBookmark = JSON.stringify({ bookmark });
-//     return fetch(`${BASE_URL}/bookmarks`, {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type' : 'application/json'
-//         },
-//         body: newBookmark
-//       });
-//     };
-// }
+const createNewBookmark = function(bookmark) {
+    const newBookmark = JSON.stringify(bookmark);
+    return fetch(`${BASE_URL}/bookmarks`, {
+        method: 'POST',
+        headers: {
+          'Content-Type' : 'application/json'
+        },
+        body: newBookmark
+      });
+    };
 
 // const updateBookmark = function(id, updateData){
 //     const newData =  JSON.stringify(updateData);
@@ -36,7 +35,7 @@ const deleteBookmark = function (id) {
 
 export default{
     getBookmarks,
-    // createNewBookmark,
+    createNewBookmark,
     // updateBookmark,
     deleteBookmark,
 };

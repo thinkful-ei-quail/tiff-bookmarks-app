@@ -3,19 +3,25 @@ import $ from 'jquery';
 import './style.css';
 
 import api from './api';
-
-// function main() {
-//   console.log('DOM is loaded');
-
-//   const startMsg = $('<p>Webpack is working!</p>');
-//   $('#root').html(startMsg);
-// }
+import store from "./store"
+import bookmark from "./bookmark"
 
 function main() {
   api.getBookmarks()
   .then(res => res.json())
-  .then((bookmarks => console.log(bookmarks)) 
-  
-  )}
+  .then(bookmarks => {
+    console.log(bookmarks)
+    bookmarks.forEach(bookmark => {
+      store.addBookmark(bookmark)
+    })
+    bookmark.render()
+
+  }) 
+  bookmark.bindEventListeners()
+  // bookmark.displayNavButtons()
+  bookmark.render()
+}
+
+  // bookmark.render()
 
 $(main);
