@@ -15,6 +15,7 @@ function main() {
       store.addBookmark(bookmark)
     })
     bookmark.render()
+    bookmark.displayNavButtons()
 
   }) 
   bookmark.bindEventListeners()

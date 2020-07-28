@@ -30,16 +30,18 @@ const generateBookmark = function (bookmark) {
       return `
       <div>
       <h2 id='${bookmark.id}' class='bookmark-title'>${bookmark.title}</h2>
-      <span>${bookmark.rating ||""}</span>
+      <span>${bookmark.rating ||""} out of 5 stars</span>
       <p>${bookmark.desc}</p>
       <a href='${bookmark.url}' target='_blank'>Visit</a>
+      <br><br>
       <button id='delete-button'>Delete</button>
       </div>`
     } else {
     return `
     <div>
     <h2 style="display:inline-block; cursor:pointer" id='${bookmark.id}' class='bookmark-title'>${bookmark.title}</h2>
-    <span>${bookmark.rating ||""}</span>
+    <br>
+    <span>${bookmark.rating ||""} out of 5 stars</span>
     </div>
     `
     }
@@ -145,7 +147,7 @@ const newBookmark = function () {
 }
 
 const submitForm = function () {
-  $('header').on('submit', '#bookmark-form', (e) => {
+  $('container').on('submit', '#bookmark-form', (e) => {
     e.preventDefault()
     let url = $('.new-bookmark-url').val()
     let title = $('.new-bookmark-title').val()
@@ -191,7 +193,7 @@ const expandedBookmark = function() {
 }
 
 const filterBookmarkView = function() {
-  $('header').on('change', '.filter-view', (e) => {
+  $('container').on('change', '.filter-view', (e) => {
     let rating = $(e.currentTarget).val()
     store.filtered = rating
     let filtered = store.filterRating(rating)
@@ -212,6 +214,7 @@ const bindEventListeners = function () {
 // This object contains the only exposed methods from this module:
 export default {
   render,
-  bindEventListeners
+  bindEventListeners,
+  displayNavButtons
 };
 
