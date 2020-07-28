@@ -30,7 +30,7 @@ const generateBookmark = function (bookmark) {
       return `
       <div>
       <h2 id='${bookmark.id}' class='bookmark-title'>${bookmark.title}</h2>
-      <span>${bookmark.rating ||""} out of 5 stars</span>
+      <span>${bookmark.rating ||""} of 5 stars</span>
       <p>${bookmark.desc}</p>
       <a href='${bookmark.url}' target='_blank'>Visit</a>
       <br><br>
@@ -41,15 +41,14 @@ const generateBookmark = function (bookmark) {
     <div>
     <h2 style="display:inline-block; cursor:pointer" id='${bookmark.id}' class='bookmark-title'>${bookmark.title}</h2>
     <br>
-    <span>${bookmark.rating ||""} out of 5 stars</span>
+    <span>${bookmark.rating ||""} of 5 stars</span>
     </div>
     `
     }
   } else {
     return `
      <form id="bookmark-form">
-     <h3>Create new bookmark</h3>
-      <label for="bookmark-entry"></label>
+      <label for="bookmark-entry">Create new bookmark</label>
       <input type="url" name="new-bookmark-url" class="new-bookmark-url" placeholder="Google.com"
         required>
         <input type="text" name="new-bookmark-title" class="new-bookmark-title" placeholder="Page title"
@@ -147,7 +146,7 @@ const newBookmark = function () {
 }
 
 const submitForm = function () {
-  $('container').on('submit', '#bookmark-form', (e) => {
+  $('.container').on('submit', '#bookmark-form', (e) => {
     e.preventDefault()
     let url = $('.new-bookmark-url').val()
     let title = $('.new-bookmark-title').val()
@@ -193,7 +192,7 @@ const expandedBookmark = function() {
 }
 
 const filterBookmarkView = function() {
-  $('container').on('change', '.filter-view', (e) => {
+  $('header').on('change', '.filter-view', (e) => {
     let rating = $(e.currentTarget).val()
     store.filtered = rating
     let filtered = store.filterRating(rating)
@@ -217,4 +216,3 @@ export default {
   bindEventListeners,
   displayNavButtons
 };
-
