@@ -1,5 +1,3 @@
-import { data } from "jquery";
-
 const BASE_URL = 'https://thinkful-list-api.herokuapp.com/tiff';
 
 const getBookmarks = function () {

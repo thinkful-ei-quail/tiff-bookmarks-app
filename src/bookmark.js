@@ -48,14 +48,16 @@ const generateBookmark = function (bookmark) {
   } else {
     return `
      <form id="bookmark-form">
-      <label for="bookmark-entry">Create new bookmark</label>
-      <input type="url" name="new-bookmark-url" class="new-bookmark-url" placeholder="Google.com"
+     <h3>Create new bookmark</h3>
+      <label for="bookmark-entry"></label>
+      <input type="url" name="new-bookmark-url" class="new-bookmark-url" placeholder="Website (ie: Google.com)"
         required>
         <input type="text" name="new-bookmark-title" class="new-bookmark-title" placeholder="Page title"
         required>
         <input type="text" name="new-bookmark-desc" class="new-bookmark-desc" placeholder="Page description"
         required>
         <div class='ratingSystem'>
+          <p>Rate your bookmark</p>
           <input id="rating-1" type="radio" name="rating" value="1">
           <label for="rating-1">1</label>
           <input id="rating-2" type="radio" name="rating" value="2">
@@ -103,7 +105,6 @@ const renderError = function () {
 
 const handleCloseError = function () {
   $('.container').on('click', '#cancel-error', () => {
-    console.log("working")
     store.error = null;
     renderError();
   });
@@ -131,7 +132,6 @@ const deleteBookmark = function () {
         render();
       })
       .catch((error) => {
-        console.log(error);
         store.setError(error.message);
         renderError();
       });

@@ -17,7 +17,7 @@ h1{
     padding: 5px;
 }
 
-h2, h3, p, span{
+h2, h3, p, span, #bookmark-form{
     font-family: 'Raleway', sans-serif;
 }
 

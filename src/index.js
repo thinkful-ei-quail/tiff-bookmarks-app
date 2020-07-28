@@ -10,7 +10,6 @@ function main() {
   api.getBookmarks()
   .then(res => res.json())
   .then(bookmarks => {
-    console.log(bookmarks)
     bookmarks.forEach(bookmark => {
       store.addBookmark(bookmark)
     })
