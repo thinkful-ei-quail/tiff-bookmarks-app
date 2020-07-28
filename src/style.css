@@ -1,12 +1,24 @@
 body{
+    background-image: linear-gradient(90deg, #e2cfc4ff, #f7d9c4ff, #faedcbff, #c9e4deff, #c6def1ff, #dbcdf0ff, #f2c6deff, #f9c6c9ff);
     text-align: center;
     height: 100%;
     margin-left: 5%;
     margin-right: 5%;
 }
 
+
 h1{
+    font-size: 2.5em;
+    letter-spacing: .03em;
+    color: #ffffff;
+    -webkit-text-stroke: 1px black;
+    margin-top: 15%;
+    font-family: 'Permanent Marker', cursive;
     padding: 5px;
+}
+
+h2, h3, p{
+    font-family: 'Raleway', sans-serif;
 }
 
 .initialViewNav{
@@ -31,17 +43,30 @@ input{
 }
 
 .ratingSystem{
-    margin-left: -20px;
+    margin: auto;
     width: 300px;
 }
 
 button{
     padding: 2px;
     margin: 1px;
+    background-color: #FFFFFF;
+    cursor:pointer
+
 }
 
+select{
+    cursor:pointer;
+    background-color: #FFFFFF;
+
+}
+
+select:hover, button:focus {
+    background-color: #a0c4ff;
+  }
+
 button:hover, button:focus {
-    background-color: #2980B9;
+    background-color: #a0c4ff;
   }
 
 li{
@@ -51,33 +76,3 @@ li{
     list-style: none;
 }
 
-
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #ddd}
-  
-  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-  .show {display:block;}

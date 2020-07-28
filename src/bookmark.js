@@ -46,7 +46,8 @@ const generateBookmark = function (bookmark) {
   } else {
     return `
      <form id="bookmark-form">
-      <label for="bookmark-entry">Create new bookmark</label>
+     <h3>Create new bookmark</h3>
+      <label for="bookmark-entry"></label>
       <input type="url" name="new-bookmark-url" class="new-bookmark-url" placeholder="Google.com"
         required>
         <input type="text" name="new-bookmark-title" class="new-bookmark-title" placeholder="Page title"
@@ -144,7 +145,7 @@ const newBookmark = function () {
 }
 
 const submitForm = function () {
-  $('.container').on('submit', '#bookmark-form', (e) => {
+  $('header').on('submit', '#bookmark-form', (e) => {
     e.preventDefault()
     let url = $('.new-bookmark-url').val()
     let title = $('.new-bookmark-title').val()
