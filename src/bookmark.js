@@ -30,7 +30,7 @@ const generateBookmark = function (bookmark) {
       return `
       <div>
       <h2 id='${bookmark.id}' class='bookmark-title'>${bookmark.title}</h2>
-      <span>${bookmark.rating ||""} of 5 stars</span>
+      <span>${bookmark.rating ||""} out of 5 stars</span>
       <p>${bookmark.desc}</p>
       <a href='${bookmark.url}' target='_blank'>Visit</a>
       <br><br>
@@ -41,7 +41,7 @@ const generateBookmark = function (bookmark) {
     <div>
     <h2 style="display:inline-block; cursor:pointer" id='${bookmark.id}' class='bookmark-title'>${bookmark.title}</h2>
     <br>
-    <span>${bookmark.rating ||""} of 5 stars</span>
+    <span>${bookmark.rating ||""} out of 5 stars</span>
     </div>
     `
     }
