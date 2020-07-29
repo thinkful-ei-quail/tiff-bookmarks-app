@@ -24,7 +24,6 @@ const displayNavButtons = function () {
 }
 
 const generateBookmark = function (bookmark) {
-  displayNavButtons()
   if (store.adding) {  
     if (bookmark.expanded) {
       return `
@@ -105,12 +104,14 @@ const renderError = function () {
 
 const handleCloseError = function () {
   $('.container').on('click', '#cancel-error', () => {
+    console.log('working')
     store.error = null;
     renderError();
   });
 };
 
 const render = function (data = [...store.bookmarks]) {
+  displayNavButtons()
   renderError();
 
   // Filter item list if store prop is true by item.checked === false
@@ -139,7 +140,7 @@ const deleteBookmark = function () {
 };
 
 const newBookmark = function () {
-  $('header').on('click', '.add-new-bookmark', (e) => {
+  $('header > section').on('click', '.add-new-bookmark', (e) => {
     store.adding = false
     render()
   })
@@ -176,7 +177,7 @@ const submitForm = function () {
 
 const cancelButton = function() {
   $('.container').on('click', '.cancel-button', (e) => {
-    store.adding = true
+    store.adding = true 
     render()
   })
 }
@@ -192,7 +193,7 @@ const expandedBookmark = function() {
 }
 
 const filterBookmarkView = function() {
-  $('header').on('change', '.filter-view', (e) => {
+  $('header > section').on('change', '.filter-view', (e) => {
     let rating = $(e.currentTarget).val()
     store.filtered = rating
     let filtered = store.filterRating(rating)
